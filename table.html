@@ -1,0 +1,155 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+
+<style>
+
+    body {
+      font-family: 'lato', sans-serif;
+    }
+    .container {
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 5px;
+      padding-right: 50px;
+    }
+    
+    h2 {
+      font-size: 26px;
+      margin: 20px 0;
+      text-align: center;
+      small {
+        font-size: 0.9em;
+      }
+    }
+    
+    .responsive-table {
+      li {
+        border-radius: 30px;
+        padding: 30px 150px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 46px;
+      }
+      .table-header {
+        background-color: #bd326e;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+      }
+      .table-row {
+        background-color: #e8eff0;
+        box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+      }
+      .col-1 {
+        flex-basis: 12%;
+      }
+      .col-2 {
+        flex-basis: 40%;
+      }
+      .col-3 {
+        flex-basis: 25%;
+      }
+      .col-4 {
+        flex-basis: 25%;
+        
+      }
+      .col-5 {
+        flex-basis: 10%;
+        
+      }
+      .col-6 {
+        flex-basis: 25%;
+        
+      }
+      
+      @media all and (max-width: 767px) {
+        .table-header {
+          display: none;
+        }
+        .table-row {
+          
+        }
+        li {
+          display: block;
+        }
+        .col {
+          
+          flex-basis: 100%;
+          
+        }
+        .col {
+          display: flex;
+          padding: 60px 0;
+          &:before {
+            color: #11e6ea;
+            padding-right: 10px;
+            content: attr(data-label);
+            flex-basis: 50%;
+            text-align: right;
+          }
+        .img{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: -1;
+            width: 100%;
+            height: auto;
+        
+        }  
+        }
+      }
+    }
+    </style>
+    <div class="container">
+        <img src="download.jpeg" alt="Cinque Terre" width="1000" height="300">
+        <h2>Patient Details</h2>
+        <ul class="responsive-table">
+            
+                <label for="search_field">Search Text:</label>
+                <form action="/search_results"method='POST'>
+                    {% csrf_token %} 
+                 <div class="'form-group">
+                 </div>   
+                
+                
+                <input type="search" name="search" id="search_field">
+            
+                
+                <input type="submit" value="Search">
+            </form>
+            <li class="table-header">
+            <div class="col col-1">ptname</div>
+            <div class="col col-2">department</div>
+            <div class="col col-3">medicine</div>
+            <div class="col col-4">city</div>
+            <div class="col col-5">edit</div>
+            <div class="col col-6">delete</div>
+            
+
+          </li>
+        
+
+          {% for getdata in doctor %}
+      <li class="table-row">
+        <div class="col col-1"  style="color: black;" data-label="ptname">{{ getdata.ptname }}</div>
+        <div class="col col-2" data-label="department">{{ getdata.department }}</div>
+        <div class="col col-3" data-label="medicine">{{ getdata.medicine }}</div>
+        <div class="col col-4" data-label="city">{{ getdata.city }}</div>
+        <div class="col col-4" data-label="city"><a href="/updatepage/{{ getdata.id }}">Edit</a></div>
+        <div class="col col-4" data-label="city"><a href="/delete/{{ getdata.id }}">Delete</a></div>
+        
+
+      </li>
+      {% endfor %} 
+        </ul>
+    </div>
+
+    {% endblock content %}
+    
