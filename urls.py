@@ -1,23 +1,23 @@
-"""
-URL configuration for djangoproject project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+from . import views
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path("",include('djangoapp.urls'))
+    path("", views.home, name='home'),
+    path("table", views.table, name='table'),
+    path("form", views.form, name='form'),
+    path("tab1", views.tab1, name='tab1'),
+    path("pt_data", views.pt_data, name='pt_data'),
+    path("updatepage/<int:id>", views.updatepage, name='updatepage'),
+    path("pt_update", views.pt_update, name='pt_update'),
+    path("delete/<int:id>", views.delete, name='delete'),
+    path("search_results", views.search_results, name='search_results'),
+    path("signup", views.signup, name='signup'),
+    path("login", views.login, name='login'),
+    path("signup_page", views.signup_page, name='signup_page'),
+    path("login_page", views.login_page, name='login_page'),
+    path("logout", views.logout, name='logout'),
+
+    
 ]
